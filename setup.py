@@ -11,9 +11,6 @@ entry_points = list(
     }
 )
 
-with open("err", "w") as f:
-    f.write(str(entry_points))
-
 setup(
     entry_points={"pygments.lexers": entry_points},
 )
