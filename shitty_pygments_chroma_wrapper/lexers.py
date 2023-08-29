@@ -38,7 +38,7 @@ for lexer in chroma.get_lexers():
         {
             "lexer_name": lexer.name,
             "name": "chroma-" + lexer.name_ident(),
-            "aliases": lexer.aliases,
+            "aliases": ["chroma-" + alias for alias in lexer.aliases],
             "filenames": lexer.filenames,
         },
     )
