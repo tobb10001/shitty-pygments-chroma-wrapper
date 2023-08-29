@@ -5,8 +5,7 @@ import tempfile
 from pygments import token as t
 from pygments.lexer import Lexer
 
-import chroma
-
+from . import chroma
 
 class ChromaLexer(Lexer):
     lexer_name = "UNKNOWN"

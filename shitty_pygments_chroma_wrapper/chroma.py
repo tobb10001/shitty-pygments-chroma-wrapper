@@ -1,7 +1,7 @@
 import subprocess
 from typing import List, Sequence
 
-from models import ChromaLexer
+from .models import ChromaLexer
 
 def get_lexers() -> Sequence[ChromaLexer]:
     chroma_list = subprocess.run(["chroma", "--list"], capture_output=True)

@@ -1,4 +1,4 @@
-from chroma import get_lexers
+from .chroma import get_lexers
 
 def main() -> int:
 
