@@ -3,6 +3,12 @@ from typing import List, Sequence
 
 from .models import ChromaLexer
 
+def _removeprefix(s: str, prefix: str) -> str:
+    # backport to be compatible with python 3.8
+    if not s.startswith(prefix):
+        return s
+    return s[len(prefix):]
+
 def get_lexers() -> Sequence[ChromaLexer]:
     chroma_list = subprocess.run(["chroma", "--list"], capture_output=True)
 
@@ -40,11 +46,11 @@ def get_lexers() -> Sequence[ChromaLexer]:
             lexers.append(ChromaLexer(line.strip()))
             continue
         elif line.startswith("    aliases: "):
-            lexers[-1].aliases = line.removeprefix("    aliases: ").split()
+            lexers[-1].aliases = _removeprefix(line, "    aliases: ").split()
         elif line.startswith("    filenames: "):
-            lexers[-1].filenames = line.removeprefix("    filenames: ").split()
+            lexers[-1].filenames = _removeprefix(line, "    filenames: ").split()
         elif line.startswith("    mimetypes: "):
-            lexers[-1].mimetypes = line.removeprefix("    mimetypes: ").split()
+            lexers[-1].mimetypes = _removeprefix(line, "    mimetypes: ").split()
         else:
             raise Exception("Can't read this line: " + line)
 
